@@ -1,6 +1,6 @@
 // import PatientsSection from "./components/PatientsSection";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PatientsPage from "./containers/PatientsPage";
+import PatientsPage from "./containers/PatientsContainer";
 import HomePage from "./pages/HomePage";
 import "./global.css";
 

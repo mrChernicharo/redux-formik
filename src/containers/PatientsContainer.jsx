@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import PatientsSection from "../components/PatientsSection";
+import PatientsSection from "../pages/PatientsPage";
 
 const mapStateToProps = (state) => ({
   patients: state.patients,
