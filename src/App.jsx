@@ -1,14 +1,17 @@
 // import PatientsSection from "./components/PatientsSection";
-import Patients from "./containers/Patients";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PatientsPage from "./containers/PatientsPage";
+import HomePage from "./pages/HomePage";
+import "./global.css";
 
 function App() {
   return (
-    <div className="App">
-      <h3>Redux App</h3>
-      <p>Gordinha é linda 💚</p>
-
-      <Patients />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/patients" element={<PatientsPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
