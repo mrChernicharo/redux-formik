@@ -8,6 +8,7 @@
 
 const patients = (state = [], action) => {
   console.log({ state, action });
+
   switch (action.type) {
     case "ADD_PATIENT":
       return [...state, { ...action.payload }];
