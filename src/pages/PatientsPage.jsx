@@ -10,6 +10,8 @@ const PatientsPage = props => {
 		addPatient,
 		deletePatient,
 		selectPatient,
+		isFetching,
+		isSavingPatient,
 	} = props;
 
 	useEffect(() => {
@@ -21,13 +23,21 @@ const PatientsPage = props => {
 		<>
 			<h6>Patients</h6>
 
-			<AddPatientForm addPatient={addPatient} />
-
-			<PatientsTable
-				patients={patients}
-				deletePatient={deletePatient}
-				selectPatient={selectPatient}
+			<AddPatientForm
+				addPatient={addPatient}
+				isSavingPatient={isSavingPatient}
 			/>
+
+			{isFetching ? (
+				<div>Carregando pacientes...</div>
+			) : (
+				<PatientsTable
+					patients={patients}
+					deletePatient={deletePatient}
+					selectPatient={selectPatient}
+					isSavingPatient={isSavingPatient}
+				/>
+			)}
 
 			{selectedPatient && (
 				<h5>selectedPatient: {selectedPatient.name}</h5>

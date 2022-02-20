@@ -1,7 +1,12 @@
 import Patient from './Patient';
 import './style.css';
 
-const PatientsTable = ({ patients, deletePatient, selectPatient }) => {
+const PatientsTable = ({
+	patients,
+	deletePatient,
+	selectPatient,
+	isSavingPatient,
+}) => {
 	const handlePatientDelete = id => {
 		deletePatient(id);
 	};
@@ -17,7 +22,7 @@ const PatientsTable = ({ patients, deletePatient, selectPatient }) => {
 							))}
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className={`${isSavingPatient && 'loading'}`}>
 					{patients.map(patient => (
 						<Patient
 							key={patient._id}

@@ -1,15 +1,15 @@
 import { Formik } from 'formik';
 import { useEffect } from 'react';
 
-const AddPatientForm = ({ addPatient, isSavingPatient }) => {
+const AddProfessionalForm = ({ addProfessional, isSavingProfessional }) => {
 	useEffect(() => {
-		console.log(isSavingPatient);
-	}, [isSavingPatient]);
+		console.log(isSavingProfessional);
+	}, [isSavingProfessional]);
 	return (
 		<Formik
 			initialValues={{ name: '', email: '', whatsapp: '' }}
-			onSubmit={(values, { isSubmitting }) => {
-				addPatient({ ...values });
+			onSubmit={values => {
+				addProfessional({ ...values });
 			}}
 		>
 			{formikCtx => {
@@ -20,7 +20,6 @@ const AddPatientForm = ({ addPatient, isSavingPatient }) => {
 					handleChange,
 					handleBlur,
 					handleSubmit,
-					isSubmitting,
 					setSubmitting,
 					/* and other goodies */
 				} = formikCtx;
@@ -53,7 +52,7 @@ const AddPatientForm = ({ addPatient, isSavingPatient }) => {
 							onChange={handleChange}
 						/>
 
-						<button disabled={isSavingPatient}>Salvar</button>
+						<button disabled={isSavingProfessional}>Salvar</button>
 					</form>
 				);
 			}}
@@ -61,4 +60,4 @@ const AddPatientForm = ({ addPatient, isSavingPatient }) => {
 	);
 };
 
-export default AddPatientForm;
+export default AddProfessionalForm;

@@ -3,9 +3,20 @@ import PatientPage from '../pages/PatientsPage';
 
 const mapStateToProps = state => {
 	const { patients: patientsSlice } = state;
+	const {
+		patients,
+		selectedPatient,
+		isFetching,
+		isSavingPatient,
+		isDeletingPatient,
+	} = patientsSlice;
+
 	return {
-		patients: patientsSlice.patients,
-		selectedPatient: patientsSlice.selectedPatient,
+		patients,
+		selectedPatient,
+		isFetching,
+		isSavingPatient,
+		isDeletingPatient,
 	};
 };
 
