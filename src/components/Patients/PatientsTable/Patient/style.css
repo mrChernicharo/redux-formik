@@ -1,12 +1,20 @@
+.patient-container {
+	border: 1px solid;
+}
+
+.patient-container:hover {
+	cursor: pointer;
+}
+
 .fading-out {
-  animation: fadeOut 1s;
+	animation: fadeOut 1s;
 }
 
 @keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }

@@ -1,11 +1,15 @@
 import { connect } from 'react-redux';
 import ProfessionalsPage from '../pages/ProfessionalsPage';
 
-const mapStateToProps = state => ({
-	professionals: state.professionals.professionals,
-	isFetching: state.professionals.isFetching,
-	selectedProfessional: state.professionals.selectedProfessional,
-});
+const mapStateToProps = state => {
+	const { professionals: professionalsSlice } = state;
+
+	return {
+		professionals: professionalsSlice.professionals,
+		isFetching: professionalsSlice.isFetching,
+		selectedProfessional: professionalsSlice.selectedProfessional,
+	};
+};
 
 const mapDispatchToProps = dispatch => ({
 	fetchProfessionals: async () => {

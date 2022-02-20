@@ -1,19 +1,22 @@
-// const patients = (state = [], action) => {
-// 	const actions = {
-// 		ADD_PATIENT: {...state, action.payload }
-// 	}
-
-// 	return actions[action.type]
-// }
-
-const patients = (state = [], action) => {
-	// console.log({ state, action });
-
+const patients = (state = { patients: [], selectedPatient: null }, action) => {
 	switch (action.type) {
 		case 'ADD_PATIENT':
-			return [...state, { ...action.payload }];
+			return {
+				...state,
+				patients: [...state.patients, { ...action.payload }],
+			};
 		case 'DELETE_PATIENT':
-			return state.filter(patient => patient.id !== action.payload);
+			return {
+				...state,
+				patients: state.patients.filter(
+					patient => patient.id !== action.payload
+				),
+			};
+		case 'SELECT_PATIENT':
+			return {
+				...state,
+				selectedPatient: action.payload,
+			};
 		default:
 			return state;
 	}
