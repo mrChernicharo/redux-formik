@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { db, client } from '../database.js';
 
 // prettier-ignore
@@ -6,13 +7,14 @@ const generateAvailabilityTable = () => {
 	const timeSlots = {};
 	let minutes = 0;
 	let hour = '';
-	while (minutes <= (60 * 24)) {
+	while (minutes < (60 * 24)) {
+		hour = `${Math.floor(minutes / 60)}:${minutes % 60 === 0 ? '00' : '30'}`
+
 		timeSlots[hour] = {
 			status: 'IDLE',
 			appointment: null,
 			minutes,
 		}
-		hour = `${Math.floor(minutes / 60)}:${minutes % 60 === 0 ? '00' : '30'}`
 
 		minutes += 30
 	}
@@ -28,7 +30,7 @@ export function getProfessionals(req, res) {
 	client.connect(async err => {
 		const data = await db.collection('professionals').find().toArray();
 
-		console.log({ data });
+		// console.log({ data });
 
 		res.json(data);
 		client.close();
@@ -72,10 +74,12 @@ export function addProfessional(req, res) {
 }
 
 export function getProfessionalAvailability(req, res) {
-	const { _id } = req.body;
+	const { id } = req.query;
 
 	client.connect(async err => {
-		const query = { _id };
+		const query = { professionalId: ObjectId(id) };
+
+		console.log(query);
 
 		const result = await db
 			.collection('professionals_availability')

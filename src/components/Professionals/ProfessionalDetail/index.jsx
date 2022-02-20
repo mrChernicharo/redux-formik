@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { MdClose } from 'react-icons/md';
+import AvailabilityTable from './AvailabilityTable';
 import './style.css';
 
-const ProfessionalDetail = ({ professional, onClose }) => {
-	const { _id, name, email, whatsapp } = professional;
+const ProfessionalDetail = ({
+	professional,
+	onClose,
+	fetchProfessionalAvailability,
+}) => {
+	const { _id, name, email, whatsapp, availability } = professional;
 
-	const [isAvailabilityTableOpen, setIsAvailabilityTableOpen] =
-		useState(false);
+	useEffect(() => {
+		fetchProfessionalAvailability(_id);
+	}, []);
 
 	return (
 		<div className="professional-detail-container">
@@ -19,19 +25,10 @@ const ProfessionalDetail = ({ professional, onClose }) => {
 				email: {email}, whatsapp: {whatsapp}
 			</p>
 
-			<button
-				onClick={() =>
-					setIsAvailabilityTableOpen(!isAvailabilityTableOpen)
-				}
-			>
-				{isAvailabilityTableOpen ? (
-					<MdClose />
-				) : (
-					<span>{'availability'}</span>
-				)}
-			</button>
-
-			{isAvailabilityTableOpen && <div>Table</div>}
+			<AvailabilityTable
+				professionalId={_id}
+				availability={availability}
+			/>
 		</div>
 	);
 };

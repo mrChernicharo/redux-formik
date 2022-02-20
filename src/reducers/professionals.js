@@ -2,6 +2,7 @@ const professionalsReducer = (
 	state = {
 		isFetching: false,
 		isSavingProfessional: false,
+		isFetchingAvailability: false,
 		professionals: [],
 		selectedProfessional: null,
 	},
@@ -38,13 +39,16 @@ const professionalsReducer = (
 		case 'REQUEST_PROFESSIONAL_AVAILABILITY':
 			return {
 				...state,
-				isFetching: true,
+				isFetchingAvailability: true,
 			};
 		case 'PROFESSIONAL_AVAILABILITY_RECEIVED':
 			return {
 				...state,
-				isFetching: false,
-				professionals: [...action.payload],
+				isFetchingAvailability: false,
+				selectedProfessional: {
+					...state.selectedProfessional,
+					availability: action.payload,
+				},
 			};
 		default:
 			return state;

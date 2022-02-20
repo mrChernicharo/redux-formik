@@ -1,0 +1,20 @@
+.table-container {
+	height: 320px;
+	border: 1px solid;
+	overflow-y: scroll;
+}
+
+.table-container tr {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+}
+
+.table-container > table > thead {
+	background-color: black;
+	position: absolute;
+	width: calc(100% - 20px);
+}
+
+td {
+	border: 1px solid;
+}

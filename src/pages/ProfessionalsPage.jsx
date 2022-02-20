@@ -7,6 +7,7 @@ const ProfessionalsPage = props => {
 	const {
 		professionals,
 		fetchProfessionals,
+		fetchProfessionalAvailability,
 		addProfessional,
 		isFetching,
 		isSavingProfessional,
@@ -49,6 +50,9 @@ const ProfessionalsPage = props => {
 				<ProfessionalDetail
 					professional={selectedProfessional}
 					onClose={handleProfessionalDetailClose}
+					fetchProfessionalAvailability={
+						fetchProfessionalAvailability
+					}
 				/>
 			)}
 		</>

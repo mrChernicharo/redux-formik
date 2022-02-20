@@ -5,6 +5,7 @@ import {
 	getProfessionals,
 	countProfessionals,
 	addProfessional,
+	getProfessionalAvailability,
 } from './routes/professionals.js';
 import { getPatients, addPatient } from './routes/patients.js';
 
@@ -19,6 +20,8 @@ const PORT = process.env.PORT || 8000;
 app.get('/professionals', getProfessionals);
 app.get('/professionals/count', countProfessionals);
 app.post('/professionals/add', addProfessional);
+
+app.get('/professionals/availability', getProfessionalAvailability);
 
 app.get('/patients', getPatients);
 app.post('/patients/add', addPatient);

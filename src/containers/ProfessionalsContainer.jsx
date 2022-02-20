@@ -58,12 +58,16 @@ const mapDispatchToProps = dispatch => ({
 		dispatch({ type: 'REQUEST_PROFESSIONAL_AVAILABILITY', payload: _id });
 
 		const data = await useFetch(
-			'http://localhost:8000/professionals-availability',
-			{ _id }
+			`http://localhost:8000/professionals/availability/?id=${_id}`
 		);
 
-		console.log('availability received', { data });
-		dispatch({ type: 'AVAILABILITY_RECEIVED', payload: data });
+		const availability = data[0].availability;
+
+		console.log('availability received', { availability });
+		dispatch({
+			type: 'PROFESSIONAL_AVAILABILITY_RECEIVED',
+			payload: availability,
+		});
 	},
 });
 

@@ -12,6 +12,8 @@ const useFetch = async (url, body = null) => {
 		config['body'] = JSON.stringify(body);
 	}
 
+	console.log('reqConfig:', config);
+
 	const response = await fetch(url, config);
 	const data = await new Promise(resolve => {
 		setTimeout(() => resolve(response.json()), delay);
