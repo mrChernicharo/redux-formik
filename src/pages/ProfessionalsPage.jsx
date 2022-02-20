@@ -1,13 +1,22 @@
 import { useEffect } from 'react';
 import ProfessionalsList from '../components/Professionals/ProfessionalsList';
 
-const ProfessionalsPage = ({
-	professionals,
-	fetchProfessionals,
-	isFetching,
-}) => {
+const ProfessionalsPage = props => {
+	const {
+		professionals,
+		fetchProfessionals,
+		isFetching,
+		selectProfessional,
+		selectedProfessional,
+	} = props;
+
+	const handleSelectProfessional = professional => {
+		selectProfessional(professional);
+	};
+
 	useEffect(() => {
-		fetchProfessionals();
+		!professionals.length && fetchProfessionals();
+		return () => selectProfessional(null);
 	}, []);
 
 	return (
@@ -17,7 +26,14 @@ const ProfessionalsPage = ({
 			{isFetching ? (
 				<div>Loading...</div>
 			) : (
-				<ProfessionalsList professionals={professionals} />
+				<ProfessionalsList
+					professionals={professionals}
+					onSelectProfessional={handleSelectProfessional}
+				/>
+			)}
+
+			{selectedProfessional && (
+				<div>profissional: {selectedProfessional.name}</div>
 			)}
 		</>
 	);

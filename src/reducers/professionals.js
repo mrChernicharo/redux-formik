@@ -6,8 +6,6 @@ const professionalsReducer = (
 	},
 	action
 ) => {
-	console.log(action);
-
 	switch (action.type) {
 		case 'REQUEST_PROFESSIONALS':
 			return {
@@ -20,15 +18,15 @@ const professionalsReducer = (
 				isFetching: false,
 				professionals: [...action.payload],
 			};
+		case 'SELECT_PROFESSIONAL':
+			return {
+				...state,
+				selectedProfessional: action.payload,
+			};
+
 		default:
 			return state;
 	}
 };
 
 export default professionalsReducer;
-
-// case 'SELECT_PROFESSIONAL':
-// 	return professional => ({
-// 		...state,
-// 		selectedProfessional: professional,
-// 	});

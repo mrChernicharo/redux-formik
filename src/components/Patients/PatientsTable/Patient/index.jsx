@@ -2,25 +2,21 @@ import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import './style.css';
 
-const Patient = ({ patient, onDelete, onClick }) => {
+const Patient = ({ patient, onDelete, onSelect }) => {
 	const { id, name, email } = patient;
 	const [isDeleting, setIsDeleting] = useState(false);
 
-	const handleDeletePatient = () => {
+	const handleDeletePatient = e => {
+		e.stopPropagation();
 		setIsDeleting(true);
 		setTimeout(() => onDelete(id), 1000);
-	};
-
-	const handlePatientClick = patient => {
-		console.log(patient);
-		onClick(patient);
 	};
 
 	return (
 		<tr
 			key={id}
 			className={`patient-container ${isDeleting ? 'fading-out' : ''}`}
-			onClick={() => handlePatientClick(patient)}
+			onClick={() => onSelect(patient)}
 		>
 			<td>
 				<span>{id}</span>
@@ -30,6 +26,8 @@ const Patient = ({ patient, onDelete, onClick }) => {
 			</td>
 			<td>
 				<span>{email}</span>
+			</td>
+			<td>
 				<span onClick={handleDeletePatient}>
 					<FaTrash />
 				</span>

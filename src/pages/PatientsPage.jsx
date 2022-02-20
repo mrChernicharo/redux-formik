@@ -1,13 +1,20 @@
+import { useEffect } from 'react';
 import AddPatientForm from '../components/Patients/AddPatientForm';
 import PatientsTable from '../components/Patients/PatientsTable';
 
-const PatientsPage = ({
-	patients,
-	selectedPatient,
-	addPatient,
-	deletePatient,
-	selectPatient,
-}) => {
+const PatientsPage = props => {
+	const {
+		patients,
+		selectedPatient,
+		addPatient,
+		deletePatient,
+		selectPatient,
+	} = props;
+
+	useEffect(() => {
+		return () => selectPatient(null);
+	}, []);
+
 	return (
 		<>
 			<h6>Patients</h6>

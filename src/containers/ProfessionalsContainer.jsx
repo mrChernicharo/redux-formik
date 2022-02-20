@@ -2,16 +2,21 @@ import { connect } from 'react-redux';
 import ProfessionalsPage from '../pages/ProfessionalsPage';
 
 const mapStateToProps = state => {
-	const { professionals: professionalsSlice } = state;
+	const { professionals: stateSlice } = state;
+	const { professionals, isFetching, selectedProfessional } = stateSlice;
 
 	return {
-		professionals: professionalsSlice.professionals,
-		isFetching: professionalsSlice.isFetching,
-		selectedProfessional: professionalsSlice.selectedProfessional,
+		professionals,
+		isFetching,
+		selectedProfessional,
 	};
 };
 
 const mapDispatchToProps = dispatch => ({
+	selectProfessional: professional => {
+		dispatch({ type: 'SELECT_PROFESSIONAL', payload: professional });
+	},
+
 	fetchProfessionals: async () => {
 		console.log('fetching professionals');
 		dispatch({ type: 'REQUEST_PROFESSIONALS' });
@@ -24,8 +29,6 @@ const mapDispatchToProps = dispatch => ({
 		console.log('professionals received!', { data });
 		dispatch({ type: 'PROFESSIONALS_RECEIVED', payload: data });
 	},
-	selectProfessional: professional =>
-		dispatch({ type: 'SELECT_PROFESSIONAL', payload: professional }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfessionalsPage);

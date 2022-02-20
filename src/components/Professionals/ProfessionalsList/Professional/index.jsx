@@ -1,5 +1,8 @@
-const Professional = ({ professional }) => {
-	return <div>{professional.name}</div>;
+const Professional = ({ professional, onSelect }) => {
+	const handleProfessionalClick = () => {
+		onSelect(professional);
+	};
+	return <div onClick={handleProfessionalClick}>{professional.name}</div>;
 };
 
 export default Professional;

@@ -1,4 +1,7 @@
-const patients = (state = { patients: [], selectedPatient: null }, action) => {
+const patientsReducer = (
+	state = { patients: [], selectedPatient: null },
+	action
+) => {
 	switch (action.type) {
 		case 'ADD_PATIENT':
 			return {
@@ -22,4 +25,4 @@ const patients = (state = { patients: [], selectedPatient: null }, action) => {
 	}
 };
 
-export default patients;
+export default patientsReducer;
