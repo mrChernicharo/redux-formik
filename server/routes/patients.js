@@ -22,7 +22,7 @@ export function addPatient(req, res) {
 	client.connect(async () => {
 		const response = await db.collection('patients').insertOne(patient);
 
-		res.status(200).json(response.insertedId);
+		res.status(200).json({ _id: response.insertedId, ...patient });
 		client.close();
 	});
 }

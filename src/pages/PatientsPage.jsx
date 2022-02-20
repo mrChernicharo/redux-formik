@@ -5,6 +5,7 @@ import PatientsTable from '../components/Patients/PatientsTable';
 const PatientsPage = props => {
 	const {
 		patients,
+		fetchPatients,
 		selectedPatient,
 		addPatient,
 		deletePatient,
@@ -12,6 +13,7 @@ const PatientsPage = props => {
 	} = props;
 
 	useEffect(() => {
+		!patients.length && fetchPatients();
 		return () => selectPatient(null);
 	}, []);
 

@@ -20,7 +20,7 @@ const PatientsTable = ({ patients, deletePatient, selectPatient }) => {
 				<tbody>
 					{patients.map(patient => (
 						<Patient
-							key={patient.id}
+							key={patient._id}
 							patient={patient}
 							onDelete={handlePatientDelete}
 							onSelect={selectPatient}
