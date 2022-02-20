@@ -1,4 +1,4 @@
-const professionals = (
+const professionalsReducer = (
 	state = {
 		isFetching: false,
 		professionals: [],
@@ -6,7 +6,7 @@ const professionals = (
 	},
 	action
 ) => {
-	console.log({ state, action });
+	console.log(action);
 
 	switch (action.type) {
 		case 'REQUEST_PROFESSIONALS':
@@ -18,14 +18,14 @@ const professionals = (
 			return {
 				...state,
 				isFetching: false,
-				professionals: [...action.professionals],
+				professionals: [...action.payload],
 			};
 		default:
 			return state;
 	}
 };
 
-export default professionals;
+export default professionalsReducer;
 
 // case 'SELECT_PROFESSIONAL':
 // 	return professional => ({

@@ -7,16 +7,16 @@
 // }
 
 const patients = (state = [], action) => {
-  console.log({ state, action });
+	// console.log({ state, action });
 
-  switch (action.type) {
-    case "ADD_PATIENT":
-      return [...state, { ...action.payload }];
-    case "DELETE_PATIENT":
-      return state.filter((patient) => patient.id !== action.payload);
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case 'ADD_PATIENT':
+			return [...state, { ...action.payload }];
+		case 'DELETE_PATIENT':
+			return state.filter(patient => patient.id !== action.payload);
+		default:
+			return state;
+	}
 };
 
 export default patients;

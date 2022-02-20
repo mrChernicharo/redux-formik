@@ -8,13 +8,11 @@ import './global.css';
 function App() {
 	return (
 		<BrowserRouter>
+			{/* prettier-ignore */}
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/patients" element={<PatientsContainer />} />
-				<Route
-					path="/professionals"
-					element={<ProfessionalsContainer />}
-				/>
+				<Route path="/professionals" element={<ProfessionalsContainer />} />
 			</Routes>
 		</BrowserRouter>
 	);
