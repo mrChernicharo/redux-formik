@@ -9,6 +9,7 @@ lerna-debug.log*
 
 notes.md
 *.http
+.env
 
 node_modules
 dist
