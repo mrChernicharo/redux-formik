@@ -36,6 +36,11 @@ const professionalsReducer = (
 				isSavingProfessional: false,
 				professionals: [...state.professionals, action.payload],
 			};
+		case 'ADD_PROFESSIONAL_ERROR':
+			return {
+				...state,
+				isSavingProfessional: false,
+			};
 		case 'REQUEST_PROFESSIONAL_AVAILABILITY':
 			return {
 				...state,

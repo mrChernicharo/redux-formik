@@ -34,17 +34,19 @@ const AvailabilityTable = ({ professionalId, availability }) => {
 								<tr>
 									{['-', ...Object.keys(availability)].map(
 										weekday => (
-											<th key={weekday}>{weekday}</th>
+											<th key={nanoid()}>{weekday}</th>
 										)
 									)}
 								</tr>
 							</thead>
 							<tbody>
-								<tr>placeholder</tr>
+								<tr>
+									<>placeholder</>
+								</tr>
 								{Object.keys(availability['monday']).map(
 									hour => (
-										<tr>
-											<td key={hour}>{hour}</td>
+										<tr key={nanoid()}>
+											<td key={nanoid()}>{hour}</td>
 
 											{Object.keys(availability).map(
 												weekday => (

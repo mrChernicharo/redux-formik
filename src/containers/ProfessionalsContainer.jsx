@@ -37,21 +37,26 @@ const mapDispatchToProps = dispatch => ({
 		dispatch({ type: 'PROFESSIONALS_RECEIVED', payload: data });
 	},
 
-	//prettier-ignore
 	addProfessional: async professional => {
-		console.log('adding professionals');
+		console.log('adding professional');
 		dispatch({ type: 'REQUEST_ADD_PROFESSIONAL' });
 
-		const { name, email, whatsapp } = professional;
+		try {
+			const data = await useFetch(
+				'http://localhost:8000/professionals/add',
+				professional
+			);
 
-		// const response = await fetch('http://localhost:8000/professionals');
-		// const data = await new Promise(resolve => {
-		// 	setTimeout(() => resolve(response.json()), 2000);
-		// });
-		const data = await useFetch('http://localhost:8000/professionals/add', professional);
+			if (data.error) {
+				throw Error('Email already in use');
+			}
 
-		console.log('professional added!', { data });
-		dispatch({ type: 'PROFESSIONAL_ADDED', payload: data });
+			console.log('professional added!', { data });
+			dispatch({ type: 'PROFESSIONAL_ADDED', payload: data });
+		} catch (err) {
+			console.log('add professional ERROR: ', { err });
+			dispatch({ type: 'ADD_PROFESSIONAL_ERROR' });
+		}
 	},
 
 	fetchProfessionalAvailability: async _id => {

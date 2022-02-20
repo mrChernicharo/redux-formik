@@ -56,20 +56,38 @@ export function addProfessional(req, res) {
 	console.log(professional);
 
 	client.connect(async err => {
-		const responseDoc = await db
-			.collection('professionals')
-			.insertOne(professional);
+		try {
+			const emailQuery = { email };
+			const emailFound = await db
+				.collection('professionals')
+				.find(emailQuery)
+				.toArray();
 
-		const professionalId = responseDoc.insertedId;
+			if (emailFound.length) {
+				throw Error({ message: 'Error: existing email' });
+			}
 
-		const availability = await db
-			.collection('professionals_availability')
-			.insertOne({ professionalId, availability: DEFAULT_AVAILABILITY });
+			const responseDoc = await db
+				.collection('professionals')
+				.insertOne(professional);
 
-		console.log(professionalId, availability);
+			const professionalId = responseDoc.insertedId;
 
-		res.status(200).send(professional);
-		client.close();
+			const availability = await db
+				.collection('professionals_availability')
+				.insertOne({
+					professionalId,
+					availability: DEFAULT_AVAILABILITY,
+				});
+
+			console.log(professionalId, availability);
+
+			res.status(200).send(professional);
+			client.close();
+		} catch (err) {
+			console.log(err);
+			res.status(403).send({ error: err });
+		}
 	});
 }
 
