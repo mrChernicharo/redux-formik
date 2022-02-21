@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
-import AddProfessionalForm from '../components/Professionals/AddProfessionalForm'
-import ProfessionalsList from '../components/Professionals/ProfessionalsList'
-import ProfessionalDetail from '../components/Professionals/ProfessionalDetail'
+import { useEffect } from 'react';
+import AddProfessionalForm from '../components/Professionals/AddProfessionalForm';
+import ProfessionalsList from '../components/Professionals/ProfessionalsList';
+import ProfessionalDetail from '../components/Professionals/ProfessionalDetail';
 
 const ProfessionalsPage = (props) => {
     const {
@@ -11,24 +11,24 @@ const ProfessionalsPage = (props) => {
         fetchProfessionals,
         fetchProfessionalAvailability,
         addProfessional,
-        isFetching,
+        isFetchingPatients,
         isSavingProfessional,
         selectProfessional,
         toggleTimeSlotStatus,
-    } = props
+    } = props;
 
     const handleSelectProfessional = (professional) => {
-        selectProfessional(professional)
-    }
+        selectProfessional(professional);
+    };
 
     const handleProfessionalDetailClose = () => {
-        selectProfessional(null)
-    }
+        selectProfessional(null);
+    };
 
     useEffect(() => {
-        !professionals.length && fetchProfessionals()
-        return () => selectProfessional(null)
-    }, [])
+        !professionals.length && fetchProfessionals();
+        return () => selectProfessional(null);
+    }, []);
 
     // useEffect(() => console.log(availability), [availability]);
 
@@ -41,7 +41,7 @@ const ProfessionalsPage = (props) => {
                 isSavingProfessional={isSavingProfessional}
             />
 
-            {isFetching ? (
+            {isFetchingPatients ? (
                 <div>Loading...</div>
             ) : (
                 <ProfessionalsList
@@ -62,6 +62,6 @@ const ProfessionalsPage = (props) => {
                 />
             )}
         </>
-    )
-}
-export default ProfessionalsPage
+    );
+};
+export default ProfessionalsPage;

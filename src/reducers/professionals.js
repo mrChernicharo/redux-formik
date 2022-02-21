@@ -1,6 +1,6 @@
 const professionalsReducer = (
     state = {
-        isFetching: false,
+        isFetchingPatients: false,
         isSavingProfessional: false,
         professionals: [],
     },
@@ -10,33 +10,33 @@ const professionalsReducer = (
         case 'REQUEST_PROFESSIONALS':
             return {
                 ...state,
-                isFetching: true,
-            }
+                isFetchingPatients: true,
+            };
         case 'PROFESSIONALS_RECEIVED':
             return {
                 ...state,
-                isFetching: false,
+                isFetchingPatients: false,
                 professionals: [...action.payload],
-            }
+            };
         case 'REQUEST_ADD_PROFESSIONAL':
             return {
                 ...state,
                 isSavingProfessional: true,
-            }
+            };
         case 'PROFESSIONAL_ADDED':
             return {
                 ...state,
                 isSavingProfessional: false,
                 professionals: [...state.professionals, action.payload],
-            }
+            };
         case 'ADD_PROFESSIONAL_ERROR':
             return {
                 ...state,
                 isSavingProfessional: false,
-            }
+            };
         default:
-            return state
+            return state;
     }
-}
+};
 
-export default professionalsReducer
+export default professionalsReducer;

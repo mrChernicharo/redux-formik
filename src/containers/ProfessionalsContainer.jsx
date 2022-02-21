@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
         professionalAvailability: availabilitySlice,
     } = state;
 
-    const { professionals, isFetching, isSavingProfessional } =
+    const { professionals, isFetchingPatients, isSavingProfessional } =
         professionalsSlice;
 
     const { availability, isFetchingAvailability, selectedProfessional } =
@@ -25,7 +25,8 @@ const mapStateToProps = (state) => {
 
     return {
         professionals,
-        isFetching,
+        isFetchingPatients,
+        isFetchingAvailability,
         isSavingProfessional,
         selectedProfessional,
         availability,

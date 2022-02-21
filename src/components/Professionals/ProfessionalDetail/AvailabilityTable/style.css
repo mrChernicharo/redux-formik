@@ -1,29 +1,50 @@
+:root {
+    --cell: 42px;
+}
+
 .table-container {
-  height: 264px;
-  border: 1px solid;
-  overflow-y: scroll;
+    height: 264px;
+    border: 1px solid;
+    overflow-y: scroll;
 }
 
 .table-container tr {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
+    display: grid;
+    grid-template-columns: repeat(8, var(--cell));
 }
 
 .table-container > table > thead {
-  background-color: black;
-  position: absolute;
-  /* width: calc(100% - 20px); */
+    background-color: black;
+    position: absolute;
+    width: calc(8 * var(--cell));
+}
+
+table {
+    background-color: #484848;
+    margin: 0 auto;
 }
 
 tr th:last-child {
-  background-color: dodgerblue;
-  padding-right: 20px;
+    background-color: dodgerblue;
+    padding-right: 20px;
 }
 
-td {
-  border: 1px solid;
+td,
+th {
+    border: 1px solid;
+}
+
+td.blocked {
+    background-color: gray;
+}
+
+td.open {
+    background-color: green;
+}
+td.closed {
+    background-color: red;
 }
 
 .spacer {
-  height: 20px;
+    height: 20px;
 }

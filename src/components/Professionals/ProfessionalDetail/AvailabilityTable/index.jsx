@@ -40,9 +40,11 @@ const AvailabilityTable = ({
                         <table>
                             <thead>
                                 <tr>
-                                    {['-', ...Object.keys(availability)].map(
+                                    {[' ', ...Object.keys(availability)].map(
                                         (weekday) => (
-                                            <th key={nanoid()}>{weekday}</th>
+                                            <th key={nanoid()}>
+                                                {weekday.slice(0, 3)}
+                                            </th>
                                         )
                                     )}
                                 </tr>
@@ -60,6 +62,11 @@ const AvailabilityTable = ({
                                                 (weekday) => (
                                                     <td
                                                         key={nanoid()}
+                                                        className={availability[
+                                                            weekday
+                                                        ][
+                                                            hour
+                                                        ].status.toLowerCase()}
                                                         onClick={() =>
                                                             handleTimeSlotClick(
                                                                 weekday,
@@ -69,13 +76,7 @@ const AvailabilityTable = ({
                                                                 ][hour].status
                                                             )
                                                         }
-                                                    >
-                                                        {
-                                                            availability[
-                                                                weekday
-                                                            ][hour].status
-                                                        }
-                                                    </td>
+                                                    ></td>
                                                 )
                                             )}
                                         </tr>

@@ -4,26 +4,28 @@ import { Link, useLocation } from 'react-router-dom';
 import './style.css';
 
 const Header = () => {
-	const { pathname } = useLocation();
+    const { pathname } = useLocation();
 
-	useEffect(() => {
-		console.log(pathname);
-	}, [pathname]);
+    useEffect(() => {
+        console.log(pathname);
+    }, [pathname]);
 
-	return (
-		<header>
-			{pathname === '/' ? (
-				<>
-					<Link to="/patients">Pacientes</Link>
-					{' | '}
-					<Link to="/professionals">Profissionais</Link>
-				</>
-			) : (
-				<Link to="/">
-					<FaArrowLeft />
-				</Link>
-			)}
-		</header>
-	);
+    return (
+        <header>
+            {pathname === '/' ? (
+                <>
+                    <Link to="/patients">Pacientes</Link>
+                    {' | '}
+                    <Link to="/professionals">Profissionais</Link>
+                    {' | '}
+                    <Link to="/appointments">Consultas</Link>
+                </>
+            ) : (
+                <Link to="/">
+                    <FaArrowLeft />
+                </Link>
+            )}
+        </header>
+    );
 };
 export default Header;
