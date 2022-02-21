@@ -1,10 +1,6 @@
 import useFetch from "../utils/useFetch";
 
 const actions = {
-  SELECT_PROFESSIONAL: (professional) => ({
-    type: "SELECT_PROFESSIONAL",
-    payload: professional,
-  }),
   REQUEST_PROFESSIONALS: () => ({
     type: "REQUEST_PROFESSIONALS",
   }),
@@ -29,11 +25,6 @@ const actions = {
     payload: availability,
   }),
 };
-
-export function selectProfessional(dispatch, professional) {
-  console.log("selectProfessional");
-  dispatch(actions.SELECT_PROFESSIONAL(professional));
-}
 
 export async function requestProfessionals(dispatch) {
   console.log("fetching professionals");

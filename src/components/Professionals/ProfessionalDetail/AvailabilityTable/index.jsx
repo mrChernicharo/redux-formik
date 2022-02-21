@@ -3,13 +3,18 @@ import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import "./style.css";
 
-const AvailabilityTable = ({ professionalId, availability }) => {
-  const [isAvailabilityTableOpen, setIsAvailabilityTableOpen] = useState(false);
+const AvailabilityTable = ({
+  professionalId,
+  toggleTimeSlotStatus,
+  availability,
+}) => {
+  const [isAvailabilityTableOpen, setIsAvailabilityTableOpen] =    useState(false);
 
-  useEffect(
-    () => console.log({ professionalId, availability }),
-    [availability]
-  );
+  const handleTimeSlotClick = (weekday, hour, status) => {
+    toggleTimeSlotStatus({ weekday, hour, status });
+  };
+
+  useEffect(() => console.log({ professionalId, availability }),[availability]);
 
   return (
     <>
@@ -43,8 +48,17 @@ const AvailabilityTable = ({ professionalId, availability }) => {
                     <td key={nanoid()}>{hour}</td>
 
                     {Object.keys(availability).map((weekday) => (
-                      <td key={nanoid()}>
-                        {availability[weekday][hour].minutes}
+                      <td
+                        key={nanoid()}
+                        onClick={() =>
+                          handleTimeSlotClick(
+                            weekday,
+                            hour,
+                            availability[weekday][hour].status
+                          )
+                        }
+                      >
+                        {availability[weekday][hour].status}
                       </td>
                     ))}
                   </tr>

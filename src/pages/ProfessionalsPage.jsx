@@ -1,61 +1,67 @@
-import { useEffect } from 'react';
-import AddProfessionalForm from '../components/Professionals/AddProfessionalForm';
-import ProfessionalsList from '../components/Professionals/ProfessionalsList';
-import ProfessionalDetail from '../components/Professionals/ProfessionalDetail';
+import { useEffect } from 'react'
+import AddProfessionalForm from '../components/Professionals/AddProfessionalForm'
+import ProfessionalsList from '../components/Professionals/ProfessionalsList'
+import ProfessionalDetail from '../components/Professionals/ProfessionalDetail'
 
-const ProfessionalsPage = props => {
-	const {
-		professionals,
-		fetchProfessionals,
-		fetchProfessionalAvailability,
-		addProfessional,
-		isFetching,
-		isSavingProfessional,
-		selectProfessional,
-		selectedProfessional,
-	} = props;
+const ProfessionalsPage = (props) => {
+    const {
+        professionals,
+        selectedProfessional,
+        availability,
+        fetchProfessionals,
+        fetchProfessionalAvailability,
+        addProfessional,
+        isFetching,
+        isSavingProfessional,
+        selectProfessional,
+        toggleTimeSlotStatus,
+    } = props
 
-	const handleSelectProfessional = professional => {
-		selectProfessional(professional);
-	};
+    const handleSelectProfessional = (professional) => {
+        selectProfessional(professional)
+    }
 
-	const handleProfessionalDetailClose = () => {
-		selectProfessional(null);
-	};
+    const handleProfessionalDetailClose = () => {
+        selectProfessional(null)
+    }
 
-	useEffect(() => {
-		!professionals.length && fetchProfessionals();
-		return () => selectProfessional(null);
-	}, []);
+    useEffect(() => {
+        !professionals.length && fetchProfessionals()
+        return () => selectProfessional(null)
+    }, [])
 
-	return (
-		<>
-			<h3>Profissionais</h3>
+    // useEffect(() => console.log(availability), [availability]);
 
-			<AddProfessionalForm
-				addProfessional={addProfessional}
-				isSavingProfessional={isSavingProfessional}
-			/>
+    return (
+        <>
+            <h3>Profissionais</h3>
 
-			{isFetching ? (
-				<div>Loading...</div>
-			) : (
-				<ProfessionalsList
-					professionals={professionals}
-					onSelectProfessional={handleSelectProfessional}
-				/>
-			)}
+            <AddProfessionalForm
+                addProfessional={addProfessional}
+                isSavingProfessional={isSavingProfessional}
+            />
 
-			{selectedProfessional && (
-				<ProfessionalDetail
-					professional={selectedProfessional}
-					onClose={handleProfessionalDetailClose}
-					fetchProfessionalAvailability={
-						fetchProfessionalAvailability
-					}
-				/>
-			)}
-		</>
-	);
-};
-export default ProfessionalsPage;
+            {isFetching ? (
+                <div>Loading...</div>
+            ) : (
+                <ProfessionalsList
+                    professionals={professionals}
+                    onSelectProfessional={handleSelectProfessional}
+                />
+            )}
+
+            {selectedProfessional && (
+                <ProfessionalDetail
+                    professional={selectedProfessional}
+                    onClose={handleProfessionalDetailClose}
+                    fetchProfessionalAvailability={
+                        fetchProfessionalAvailability
+                    }
+                    toggleTimeSlotStatus={toggleTimeSlotStatus}
+                    availability={availability}
+                />
+            )}
+        </>
+    )
+}
+export default ProfessionalsPage

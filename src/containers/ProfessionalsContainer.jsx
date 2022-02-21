@@ -1,26 +1,35 @@
 import { connect } from "react-redux";
 import {
-  selectProfessional,
   requestProfessionals,
   requestAddProfessional,
-  requestProfessionalAvailability,
 } from "../actions/professionals";
+import {
+  selectProfessional,
+  requestProfessionalAvailability,
+  toggleAvailabilityTimeSlotStatus,
+} from "../actions/professionalAvailability";
+
 import ProfessionalsPage from "../pages/ProfessionalsPage";
 
 const mapStateToProps = (state) => {
-  const { professionals: stateSlice } = state;
   const {
-    professionals,
-    isFetching,
-    selectedProfessional,
-    isSavingProfessional,
-  } = stateSlice;
+    professionals: professionalsSlice,
+    professionalAvailability: availabilitySlice,
+  } = state;
+
+  const { professionals, isFetching, isSavingProfessional } =
+    professionalsSlice;
+
+  const { availability, isFetchingAvailability, selectedProfessional } =
+    availabilitySlice;
 
   return {
     professionals,
     isFetching,
     isSavingProfessional,
     selectedProfessional,
+    availability,
+    isFetchingAvailability,
   };
 };
 
@@ -35,6 +44,9 @@ const mapDispatchToProps = (dispatch) => ({
 
   fetchProfessionalAvailability: async (_id) =>
     requestProfessionalAvailability(dispatch, _id),
+
+  toggleTimeSlotStatus: (timeSlot) =>
+    toggleAvailabilityTimeSlotStatus(dispatch, timeSlot),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfessionalsPage);
