@@ -1,15 +1,16 @@
-import { useEffect } from 'react'
-import { MdClose } from 'react-icons/md'
-import AvailabilityTable from './AvailabilityTable'
-import './style.css'
+import { useEffect } from 'react';
+import { MdClose } from 'react-icons/md';
+import AvailabilityTable from './AvailabilityTable';
+import './style.css';
 
 const ProfessionalDetail = ({
     professional,
     onClose,
     toggleTimeSlotStatus,
     availability,
+    fetchProfessionalAvailability,
 }) => {
-    const { _id, name, email, whatsapp } = professional
+    const { _id, name, email, whatsapp } = professional;
 
     return (
         <div className="professional-detail-container">
@@ -28,7 +29,7 @@ const ProfessionalDetail = ({
                 availability={availability}
             />
         </div>
-    )
-}
+    );
+};
 
-export default ProfessionalDetail
+export default ProfessionalDetail;

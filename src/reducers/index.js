@@ -1,12 +1,14 @@
-import { combineReducers } from "redux";
-import patientsReducer from "./patients";
-import professionalsReducer from "./professionals";
-import professionalAvailabilityReducer from "./professionalAvailability";
+import { createStore, combineReducers } from 'redux';
+import patientsReducer from './patients';
+import professionalsReducer from './professionals';
+import professionalAvailabilityReducer from './professionalAvailability';
 
 const rootReducer = combineReducers({
-  patients: patientsReducer,
-  professionals: professionalsReducer,
-  professionalAvailability: professionalAvailabilityReducer,
+    patients: patientsReducer,
+    professionals: professionalsReducer,
+    professionalAvailability: professionalAvailabilityReducer,
 });
 
-export default rootReducer;
+const store = createStore(rootReducer);
+
+export default store;
